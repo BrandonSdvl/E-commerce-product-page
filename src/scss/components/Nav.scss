@@ -1,0 +1,13 @@
+.nav {
+    @include mobile {
+        display: none;
+    }
+
+    @include tablet {
+        display: block;
+    }
+
+    &--show {
+        display: block;
+    }
+}
