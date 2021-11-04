@@ -1,22 +1,30 @@
 <template lang="pug">
 .cart-item
-  img(src="../assets/image-product-1-thumbnail.jpg")
+  img(:src="require('../assets/' + products[product].images[0][1])")
   .cart-item__details
-    span Fall Limited Edition Sneakers
+    span {{ products[product].data.postTitle }}
     .cart-item__price
-      span $125.00
-      span &nbsp;x 3&nbsp;
-      span $375.00
+      span ${{ products[product].data.netPrice }}
+      span &nbsp;x {{ amount }}&nbsp;
+      span ${{ products[product].data.netPrice * amount }}
   DeleteIcon
 </template>
 
 <script>
 import DeleteIcon from "../assets/icon-delete.svg";
+import { mapState } from "vuex";
 
 export default {
   name: "CartItem",
   components: {
     DeleteIcon,
+  },
+  computed: {
+    ...mapState(["products"]),
+  },
+  props: {
+    amount: Number,
+    product: Number,
   },
 };
 </script>

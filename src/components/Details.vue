@@ -1,13 +1,16 @@
 <template lang="pug">
 .details
-  h2 Sneaker Company
-  h1 Fall Limited Edition Sneakers
-  p These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.
+  h2 {{ details.company }}
+  h1 {{ details.postTitle }}
+  p {{ details.description }}
 
   .details__price
-    span $125.00
-    span 50%
-    span $250.00
+    template(v-if="details.discount")
+      span {{ details.netPrice.toFixed(2) }}
+      span {{ details.discount + '%' }}
+      span {{ details.price.toFixed(2) }}
+    template(v-else)
+      span {{ details.price.toFixed(2) }}
 
   .detail__amount
     MinusIcon
@@ -25,6 +28,10 @@ export default {
   components: {
     MinusIcon,
     PlusIcon,
+  },
+  props: {
+    details: Object,
+    selected: Number,
   },
 };
 </script>

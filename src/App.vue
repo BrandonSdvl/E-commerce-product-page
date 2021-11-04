@@ -1,7 +1,7 @@
 <template lang="pug">
 #app
   Header
-  Product
+  Product(:selected="selected")
 </template>
 
 <script>
@@ -13,6 +13,11 @@ export default {
   components: {
     Header,
     Product,
+  },
+  data() {
+    return {
+      selected: 0,
+    };
   },
 };
 </script>
