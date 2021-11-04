@@ -1,0 +1,21 @@
+.header {
+    @include mobile {
+        .nav {
+            display: none;
+        }
+
+        .hamburger {
+            display: block;
+        }
+    }
+
+    @include tablet {
+        .nav {
+            display: block;
+        }
+
+        .hamburger {
+            display: none;
+        }
+    }
+}
