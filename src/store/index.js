@@ -22,12 +22,20 @@ export default new Vuex.Store({
           discount: 50,
           netPrice: 125,
         },
-        images: [
-          ["image-product-1.jpg", "image-product-1-thumbnail.jpg"],
-          ["image-product-2.jpg", "image-product-2-thumbnail.jpg"],
-          ["image-product-3.jpg", "image-product-3-thumbnail.jpg"],
-          ["image-product-4.jpg", "image-product-4-thumbnail.jpg"],
-        ],
+        images: {
+          full: [
+            "image-product-1.jpg",
+            "image-product-2.jpg",
+            "image-product-3.jpg",
+            "image-product-4.jpg",
+          ],
+          thumbnails: [
+            "image-product-1-thumbnail.jpg",
+            "image-product-2-thumbnail.jpg",
+            "image-product-3-thumbnail.jpg",
+            "image-product-4-thumbnail.jpg",
+          ],
+        },
       },
     ],
   },

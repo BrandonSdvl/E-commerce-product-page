@@ -1,6 +1,6 @@
 <template lang="pug">
 .cart-item
-  img(:src="require('../assets/' + products[product].images[0][1])")
+  img(:src="require('../assets/' + products[product].images.thumbnails[0])")
   .cart-item__details
     span {{ products[product].data.postTitle }}
     .cart-item__price

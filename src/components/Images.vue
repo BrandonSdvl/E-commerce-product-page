@@ -1,26 +1,38 @@
 <template lang="pug">
 .images-container
-  img.images-container__large-image(
-    :src="require('../assets/' + images[imageSelected][0])"
-  )
-  .images-container__thumbnails
-    img(
-      v-for="(i, idx) in images",
-      :src="require('../assets/' + i[1])",
-      :key="idx"
+  Carousel(:images="images.full", ref="carousel")
+  .thumbnails
+    img.thumbnails__item(
+      v-for="(i, idx) in images.thumbnails",
+      :src="require(`../assets/${i}`)",
+      :key="idx",
+      @click="changeImage(idx)"
     )
 </template>
 
 <script>
+import Carousel from "./Carousel.vue";
+
 export default {
   name: "Images",
   props: {
-    images: Array,
+    images: Object,
   },
-  data() {
-    return {
-      imageSelected: 0,
-    };
+  components: {
+    Carousel,
+  },
+  methods: {
+    changeImage(idx) {
+      if (this.$refs.carousel.visibleSlide === idx) {
+        return;
+      } else if (this.$refs.carousel.visibleSlide < idx) {
+        this.$refs.carousel.visibleSlide = idx;
+        this.$refs.carousel.direction = "left";
+      } else if (this.$refs.carousel.visibleSlide > idx) {
+        this.$refs.carousel.visibleSlide = idx;
+        this.$refs.carousel.direction = "right";
+      }
+    },
   },
 };
 </script>
