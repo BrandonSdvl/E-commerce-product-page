@@ -1,6 +1,9 @@
 <template lang="pug">
 .carousel
-  button.carousel__btn.carousel__btn--prev(@click="prev()") <
+  button.carousel__btn--prev(
+    @click="prev()",
+    :class="modal ? 'modal__btn' : 'carousel__btn'"
+  ) <
   .carousel__list
     transition(
       :name="direction",
@@ -11,9 +14,13 @@
     )
       img.carousel__item(
         :src="require('../assets/' + i)",
-        v-show="idx===visibleSlide"
+        v-show="idx===visibleSlide",
+        @click="!modal ? handleModal() : ''"
       )
-  button.carousel__btn.carousel__btn--next(@click="next()") >
+  button.carousel__btn--next(
+    @click="next()",
+    :class="modal ? 'modal__btn' : 'carousel__btn'"
+  ) >
 </template>
 
 <script>
@@ -21,6 +28,7 @@ export default {
   name: "Carousel",
   props: {
     images: Array,
+    modal: Boolean,
   },
   data() {
     return {
@@ -49,6 +57,14 @@ export default {
         this.visibleSlide++;
       }
       this.direction = "left";
+    },
+    handleModal() {
+      const modal = document.getElementById("modal");
+      if (!modal.classList.contains("modal--show")) {
+        modal.classList.add("modal--show");
+      } else {
+        modal.classList.remove("modal--show");
+      }
     },
   },
 };

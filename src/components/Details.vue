@@ -63,7 +63,7 @@ export default {
       this.cart.map((item) => {
         if (item.product === this.selected) {
           created = true;
-          item.quantity = this.quantity;
+          item.quantity += this.quantity;
         }
       });
       if (created) {

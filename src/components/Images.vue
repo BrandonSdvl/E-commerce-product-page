@@ -1,6 +1,6 @@
 <template lang="pug">
 .images-container
-  Carousel(:images="images.full", ref="carousel")
+  Carousel(:images="images.full", ref="carousel", :modal="modal")
   .thumbnails
     img.thumbnails__item(
       v-for="(i, idx) in images.thumbnails",
@@ -17,6 +17,7 @@ export default {
   name: "Images",
   props: {
     images: Object,
+    modal: Boolean,
   },
   components: {
     Carousel,

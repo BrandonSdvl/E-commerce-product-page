@@ -1,6 +1,6 @@
 <template lang="pug">
 main
-  Images(:images="products[selected].images")
+  Images(:images="products[selected].images", :modal="false")
   Details(:details="products[selected].data", :selected="selected")
 </template>
 

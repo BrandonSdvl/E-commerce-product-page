@@ -1,7 +1,10 @@
 <template lang="pug">
 header.header
   .header__container
-    HamburgerIcon.hamburger(@click="show($refs.nav, 'nav')", alt="menu")
+    HamburgerIcon.hamburger(
+      @click="$parent.show($refs.nav, 'nav')",
+      alt="menu"
+    )
     Logo
     nav.nav(ref="nav")
       ul.nav__list
@@ -11,7 +14,7 @@ header.header
         li.nav__item About
         li.nav__item Contact
   .header__container
-    CartIcon(@click="show($refs.cart.$el, 'cart')")
+    CartIcon(@click="$parent.show($refs.cart.$el, 'cart')")
     img(src="../assets/image-avatar.png", alt="user-image")
   Cart(ref="cart")
 </template>
@@ -29,15 +32,6 @@ export default {
     HamburgerIcon,
     Logo,
     CartIcon,
-  },
-  methods: {
-    show(el, name) {
-      if (!el.classList.contains(`${name}--show`)) {
-        el.classList.add(`${name}--show`);
-      } else {
-        el.classList.remove(`${name}--show`);
-      }
-    },
   },
 };
 </script>
