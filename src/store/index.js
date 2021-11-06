@@ -8,7 +8,7 @@ export default new Vuex.Store({
     cart: [
       {
         product: 0,
-        amount: 3,
+        quantity: 3,
       },
     ],
     products: [

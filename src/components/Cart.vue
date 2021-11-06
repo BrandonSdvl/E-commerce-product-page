@@ -6,9 +6,10 @@
   .cart__items(v-else)
     CartItem(
       v-for="(i, idx) in cart",
-      :amount="i.amount",
+      :amount="i.quantity",
       :product="i.product",
-      :key="idx"
+      :key="idx",
+      :idx="idx"
     )
     button Checkout
 </template>

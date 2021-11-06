@@ -7,7 +7,7 @@
       span ${{ products[product].data.netPrice }}
       span &nbsp;x {{ amount }}&nbsp;
       span ${{ products[product].data.netPrice * amount }}
-  DeleteIcon
+  DeleteIcon(@click="deleteItem()")
 </template>
 
 <script>
@@ -20,11 +20,17 @@ export default {
     DeleteIcon,
   },
   computed: {
-    ...mapState(["products"]),
+    ...mapState(["products", "cart"]),
   },
   props: {
     amount: Number,
     product: Number,
+    idx: Number,
+  },
+  methods: {
+    deleteItem() {
+      this.cart.splice(this.idx, 1);
+    },
   },
 };
 </script>
