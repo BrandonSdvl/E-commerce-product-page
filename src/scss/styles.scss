@@ -1,7 +1,9 @@
 @import './config/breakpoints';
+@import './config/colors';
 @import './base/base';
 
 @import './components/Header';
+@import './components/Product';
 @import './components/Images';
 @import './components/Nav';
 @import './components/Cart';
