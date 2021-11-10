@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import MinusIcon from "../assets/icon-minus.svg";
-import PlusIcon from "../assets/icon-plus.svg";
+import MinusIcon from "../assets/icon-minus.svg?inline";
+import PlusIcon from "../assets/icon-plus.svg?inline";
 import { mapState } from "vuex";
 
 export default {

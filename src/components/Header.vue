@@ -27,10 +27,10 @@ header.header
 
 <script>
 import Cart from "./Cart.vue";
-import HamburgerIcon from "../assets/icon-menu.svg";
-import Logo from "../assets/logo.svg";
-import CartIcon from "../assets/icon-cart.svg";
-import CloseIcon from "../assets/icon-close.svg";
+import HamburgerIcon from "../assets/icon-menu.svg?inline";
+import Logo from "../assets/logo.svg?inline";
+import CartIcon from "../assets/icon-cart.svg?inline";
+import CloseIcon from "../assets/icon-close.svg?inline";
 import { mapState } from "vuex";
 
 export default {

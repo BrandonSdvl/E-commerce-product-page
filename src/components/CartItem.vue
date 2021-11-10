@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import DeleteIcon from "../assets/icon-delete.svg";
+import DeleteIcon from "../assets/icon-delete.svg?inline";
 import { mapState } from "vuex";
 
 export default {

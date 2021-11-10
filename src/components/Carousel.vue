@@ -1,9 +1,10 @@
 <template lang="pug">
 .carousel
-  button.carousel__btn--prev(
+  .carousel__btn.carousel__btn--prev(
     @click="prev()",
     :class="modal ? 'modal__btn' : 'carousel__btn'"
-  ) <
+  )
+    PreviousIcon
   .carousel__list
     transition(
       :name="direction",
@@ -17,18 +18,26 @@
         v-show="idx===visibleSlide",
         @click="!modal ? handleModal() : ''"
       )
-  button.carousel__btn--next(
+  .carousel__btn.carousel__btn--next(
     @click="next()",
     :class="modal ? 'modal__btn' : 'carousel__btn'"
-  ) >
+  )
+    NextIcon
 </template>
 
 <script>
+import NextIcon from "../assets/icon-next.svg?inline";
+import PreviousIcon from "../assets/icon-previous.svg?inline";
+
 export default {
   name: "Carousel",
   props: {
     images: Array,
     modal: Boolean,
+  },
+  components: {
+    NextIcon,
+    PreviousIcon,
   },
   data() {
     return {
