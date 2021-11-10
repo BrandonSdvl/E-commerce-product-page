@@ -1,7 +1,55 @@
 .cart {
-    display: none;
+    width: 95%;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    background-color: $white;
+    border-radius: 10px;
+    margin-top: 65px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    transform: translate(50%, -100%) scale(0);
+    transition: transform 0.2s ease-in-out;
+
+    &__title {
+        font-size: 15px;
+        padding: 20px;
+        margin: 0;
+        border-bottom: 1px solid $grayish-blue;
+    }
+
+    &__items {
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 30px;
+    }
+
+    &__button {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        background-color: $orange;
+        color: $light-grayish-blue;
+        font-family: 'Kumbh Sans', sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    &__message {
+        width: 100%;
+        line-height: 160px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 15px;
+        color: $dark-grayish-blue;
+    }
 
     &--show {
-        display: block;
+        transform: translateY(0);
     }
 }

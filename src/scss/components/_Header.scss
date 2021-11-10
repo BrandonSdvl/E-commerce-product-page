@@ -10,6 +10,28 @@
     left: 0;
     z-index: 100;
 
+    &__cart-indicator {
+        display: block;
+        width: 15px;
+        height: 10px;
+        top: 0;
+        right: 0;
+        position: absolute;
+        border-radius: 10px;
+        background-color: $orange;
+        text-align: center;
+        font-size: 7px;
+        font-weight: 700;
+        color: $white;
+    }
+
+    &__cart-icon {
+        position: relative;
+        height: 20px;
+        padding-top: 4px;
+        padding-right: 3px;
+    }
+
     &__container {
         display: flex;
         align-items: flex-end;

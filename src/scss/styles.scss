@@ -1,5 +1,5 @@
-@import './config/breakpoints';
-@import './config/colors';
+@import './utilities/breakpoints';
+@import './utilities/colors';
 @import './base/base';
 
 @import './components/Header';
@@ -9,3 +9,4 @@
 @import './components/Cart';
 @import './components/Carousel';
 @import './components/Modal';
+@import './components/CartItem';

@@ -1,0 +1,26 @@
+.cart-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+
+    &__image {
+        height: 50px;
+        border-radius: 5px;
+    }
+
+    &__details {
+        font-size: 15px;
+        color: $dark-grayish-blue;
+        max-width: 70%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__total {
+        font-weight: 700;
+        color: $very-dark-blue;
+    }
+}

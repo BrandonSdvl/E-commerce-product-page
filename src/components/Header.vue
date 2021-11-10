@@ -16,7 +16,11 @@ header.header
           li.nav__item About
           li.nav__item Contact
   .header__container
-    CartIcon(@click="$parent.show($refs.cart.$el, 'cart')")
+    #header__cart-icon.header__cart-icon.header__cart-icon(
+      @click="$parent.show($refs.cart.$el, 'cart')"
+    )
+      .header__cart-indicator(v-show="cart.length > 0") {{ totalCartItems }}
+      CartIcon
     img.header__user-image(src="../assets/image-avatar.png", alt="user-image")
   Cart(ref="cart")
 </template>
@@ -27,6 +31,7 @@ import HamburgerIcon from "../assets/icon-menu.svg";
 import Logo from "../assets/logo.svg";
 import CartIcon from "../assets/icon-cart.svg";
 import CloseIcon from "../assets/icon-close.svg";
+import { mapState } from "vuex";
 
 export default {
   name: "Header",
@@ -36,6 +41,14 @@ export default {
     Logo,
     CartIcon,
     CloseIcon,
+  },
+  computed: {
+    ...mapState(["cart"]),
+    totalCartItems() {
+      let total = 0;
+      this.cart.map((item) => (total += item.quantity));
+      return total;
+    },
   },
 };
 </script>

@@ -1,8 +1,8 @@
 <template lang="pug">
 .cart
+  h2.cart__title Cart
   template(v-if="cart.length == 0")
-    h2 Cart
-    span Your cart is empty
+    .cart__message Your cart is empty
   .cart__items(v-else)
     CartItem(
       v-for="(i, idx) in cart",
@@ -11,7 +11,7 @@
       :key="idx",
       :idx="idx"
     )
-    button Checkout
+    button.cart__button Checkout
 </template>
 
 <script>
