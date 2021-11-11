@@ -83,7 +83,7 @@
         padding: 15px;
         text-align: center;
         font-size: 16px;
-        font-family: 'Kumbh Sans', sans-serif;
+        font-family: $main-font;
         font-weight: 700;
         outline: none;
         background-color: $light-grayish-blue;
@@ -98,7 +98,7 @@
         background-color: $orange;
         padding: 15px;
         color: $white;
-        font-family: 'Kumbh Sans', sans-serif;
+        font-family: $main-font;
         font-weight: 700;
         border: none;
         border-radius: 10px;
