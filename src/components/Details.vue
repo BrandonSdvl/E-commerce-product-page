@@ -1,34 +1,42 @@
 <template lang="pug">
 .details
-  h2 {{ details.company }}
-  h1 {{ details.postTitle }}
-  p {{ details.description }}
+  h2.details__company {{ details.company }}
+  h1.details__title {{ details.postTitle }}
+  p.details__description {{ details.description }}
 
-  .details__price
+  .details__price-container
     template(v-if="details.discount")
-      span {{ details.netPrice.toFixed(2) }}
-      span {{ details.discount + '%' }}
-      span {{ details.price.toFixed(2) }}
+      span.details__net-price ${{ details.netPrice.toFixed(2) }}
+      span.details__discount {{ details.discount + '%' }}
+      span.details__price ${{ details.price.toFixed(2) }}
     template(v-else)
-      span {{ details.price.toFixed(2) }}
+      span.details__net-price ${{ details.price.toFixed(2) }}
 
-  .detail__amount
-    MinusIcon(@click="minus()")
-    input(v-model="quantity", @change="handleQuantity", type="number")
-    PlusIcon(@click="plus()")
-  button(@click="addToCart()") Add to cart
+  .details__quantity
+    IconMinus.details__icon-minus(@click="minus()")
+    input.details__input(
+      v-model="quantity",
+      @change="handleQuantity",
+      type="number"
+    )
+    IconPlus.details__icon-plus(@click="plus()")
+  button.details__button(@click="addToCart()") 
+    IconCart.details__icon-cart(fill="#fff")
+    | Add to cart
 </template>
 
 <script>
-import MinusIcon from "../assets/icon-minus.svg?inline";
-import PlusIcon from "../assets/icon-plus.svg?inline";
+import IconMinus from "../assets/icon-minus.svg?inline";
+import IconPlus from "../assets/icon-plus.svg?inline";
+import IconCart from "../assets/icon-cart.svg?inline";
 import { mapState } from "vuex";
 
 export default {
   name: "Details",
   components: {
-    MinusIcon,
-    PlusIcon,
+    IconMinus,
+    IconPlus,
+    IconCart,
   },
   props: {
     details: Object,
@@ -67,6 +75,7 @@ export default {
         }
       });
       if (created) {
+        this.quantity = 1;
         return;
       } else {
         let element = {
@@ -74,6 +83,7 @@ export default {
           quantity: this.quantity,
         };
         this.cart.push(element);
+        this.quantity = 1;
       }
     },
   },
