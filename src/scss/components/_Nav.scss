@@ -44,6 +44,13 @@
         &__close-icon {
             display: none;
         }
+
+        &__list {
+            display: flex;
+            margin: 0;
+            gap: 20px;
+            color: $dark-grayish-blue;
+        }
     }
 
     &--show {

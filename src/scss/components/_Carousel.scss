@@ -7,11 +7,22 @@
     overflow: hidden;
     align-items: center;
 
+    @include tablet {
+        min-height: 35vw;
+        height: 35vw;
+        border-radius: 10px;
+    }
+
     &__list {
         width: 100vw;
         height: 100vw;
         display: flex;
         position: relative;
+
+        @include tablet {
+            width: 35vw;
+            height: 35vw;
+        }
     }
 
     &__item {
@@ -22,6 +33,11 @@
         left: 0;
         right: 0;
         bottom: 0;
+
+        @include tablet {
+            width: 35vw;
+            height: 35vw;
+        }
     }
 
     &__btn {

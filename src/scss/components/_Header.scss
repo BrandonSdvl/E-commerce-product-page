@@ -36,10 +36,18 @@
         display: flex;
         align-items: flex-end;
         gap: 20px;
+
+        @include tablet {
+            align-items: center;
+        }
     }
 
     &__user-image {
         width: 20px;
+
+        @include tablet {
+            width: 30px;
+        }
     }
 
     @include mobile {
@@ -49,6 +57,9 @@
     }
 
     @include tablet {
+        padding: 30px;
+        border: 1px solid $grayish-blue;
+
         .hamburger {
             display: none;
         }
