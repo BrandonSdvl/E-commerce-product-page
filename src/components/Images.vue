@@ -2,16 +2,17 @@
 .images-container
   Carousel(:images="images.full", ref="carousel", :modal="modal")
   .thumbnails
-    img.thumbnails__item(
+    .thumbnails__item-container(
       v-for="(i, idx) in images.thumbnails",
-      :src="require(`../assets/${i}`)",
-      :key="idx",
-      @click="changeImage(idx)"
+      @click="changeImage(idx)",
+      :class="idx === slide.visibleSlide ? 'thumbnails__item--selected' : ''"
     )
+      img.thumbnails__item(:src="require(`../assets/${i}`)", :key="idx")
 </template>
 
 <script>
 import Carousel from "./Carousel.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "Images",
@@ -22,16 +23,19 @@ export default {
   components: {
     Carousel,
   },
+  computed: {
+    ...mapState(["slide"]),
+  },
   methods: {
     changeImage(idx) {
-      if (this.$refs.carousel.visibleSlide === idx) {
+      if (this.slide.visibleSlide === idx) {
         return;
-      } else if (this.$refs.carousel.visibleSlide < idx) {
-        this.$refs.carousel.visibleSlide = idx;
-        this.$refs.carousel.direction = "left";
-      } else if (this.$refs.carousel.visibleSlide > idx) {
-        this.$refs.carousel.visibleSlide = idx;
-        this.$refs.carousel.direction = "right";
+      } else if (this.slide.visibleSlide < idx) {
+        this.slide.visibleSlide = idx;
+        this.slide.direction = "left";
+      } else if (this.slide.visibleSlide > idx) {
+        this.slide.visibleSlide = idx;
+        this.slide.direction = "right";
       }
     },
   },

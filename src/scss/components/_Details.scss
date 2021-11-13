@@ -9,6 +9,17 @@
         margin: 20px 0 0 0;
     }
 
+    @include laptop {
+        width: 40%;
+        margin-top: 0;
+
+        &__add {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 35px;
+        }
+    }
+
     &__company {
         text-transform: uppercase;
         margin: 0;
@@ -16,10 +27,19 @@
         font-size: 12px;
         font-weight: 700;
         letter-spacing: 2px;
+
+        @include laptop {
+            font-size: 16px;
+        }
     }
 
     &__title {
         color: $very-dark-blue;
+
+        @include laptop {
+            font-size: 45px;
+            margin-bottom: 35px;
+        }
     }
 
     &__description {
@@ -37,6 +57,16 @@
         align-items: center;
         width: 100%;
         position: relative;
+
+        div {
+            display: flex;
+            align-items: center;
+        }
+
+        @include laptop {
+            flex-direction: column;
+            align-items: flex-start;
+        }
     }
 
     &__net-price {
@@ -55,9 +85,13 @@
 
     &__price {
         color: $grayish-blue;
-        right: 0;
-        position: absolute;
+        margin-left: auto;
         text-decoration: line-through;
+
+        @include laptop {
+            margin-left: 0;
+            margin-top: 10px;
+        }
     }
 
     &__quantity {
@@ -65,6 +99,10 @@
         position: relative;
         display: flex;
         align-items: center;
+
+        @include laptop {
+            width: 40%;
+        }
     }
 
     &__input {
@@ -74,10 +112,24 @@
     &__icon-minus,
     &__icon-plus {
         position: absolute;
+        cursor: pointer;
+
+        @include laptop {
+            transition: opacity 0.1s ease-in-out;
+
+            &:hover {
+                opacity: 50%;
+            }
+        }
     }
 
     &__icon-minus {
         left: 20px;
+        padding: 8px 0;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     &__icon-plus {
@@ -111,6 +163,17 @@
         align-items: center;
         justify-content: center;
         box-shadow: 0px 15px 20px -10px rgba($orange, 0.5);
+        cursor: pointer;
+
+        @include laptop {
+            margin: 0;
+            width: 55%;
+            transition: opacity 0.2s ease-in-out;
+
+            &:hover {
+                opacity: 50%;
+            }
+        }
     }
 
     &__icon-cart {

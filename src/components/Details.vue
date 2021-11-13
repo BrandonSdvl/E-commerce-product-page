@@ -6,23 +6,25 @@
 
   .details__price-container
     template(v-if="details.discount")
-      span.details__net-price ${{ details.netPrice.toFixed(2) }}
-      span.details__discount {{ details.discount + '%' }}
+      div
+        span.details__net-price ${{ details.netPrice.toFixed(2) }}
+        span.details__discount {{ details.discount + '%' }}
       span.details__price ${{ details.price.toFixed(2) }}
     template(v-else)
       span.details__net-price ${{ details.price.toFixed(2) }}
 
-  .details__quantity
-    IconMinus.details__icon-minus(@click="minus()")
-    input.details__input(
-      v-model="quantity",
-      @change="handleQuantity",
-      type="number"
-    )
-    IconPlus.details__icon-plus(@click="plus()")
-  button.details__button(@click="addToCart()") 
-    IconCart.details__icon-cart(fill="#fff")
-    | Add to cart
+  .details__add
+    .details__quantity
+      IconMinus.details__icon-minus(@click="minus()")
+      input.details__input(
+        v-model="quantity",
+        @change="handleQuantity",
+        type="number"
+      )
+      IconPlus.details__icon-plus(@click="plus()")
+    button.details__button(@click="addToCart()") 
+      IconCart.details__icon-cart(fill="#fff")
+      | Add to cart
 </template>
 
 <script>

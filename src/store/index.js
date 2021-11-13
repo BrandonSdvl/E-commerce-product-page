@@ -38,6 +38,10 @@ export default new Vuex.Store({
         },
       },
     ],
+    slide: {
+      visibleSlide: 0,
+      direction: "left",
+    },
   },
   mutations: {},
   actions: {},

@@ -7,7 +7,7 @@
     PreviousIcon
   .carousel__list
     transition(
-      :name="direction",
+      :name="slide.direction",
       mode="in-out",
       v-for="(i, idx) in images",
       :key="idx",
@@ -15,7 +15,7 @@
     )
       img.carousel__item(
         :src="require('../assets/' + i)",
-        v-show="idx===visibleSlide",
+        v-show="idx===slide.visibleSlide",
         @click="!modal ? handleModal() : ''"
       )
   .carousel__btn.carousel__btn--next(
@@ -28,6 +28,7 @@
 <script>
 import NextIcon from "../assets/icon-next.svg?inline";
 import PreviousIcon from "../assets/icon-previous.svg?inline";
+import { mapState } from "vuex";
 
 export default {
   name: "Carousel",
@@ -39,33 +40,28 @@ export default {
     NextIcon,
     PreviousIcon,
   },
-  data() {
-    return {
-      direction: "direction",
-      visibleSlide: 0,
-    };
-  },
   computed: {
+    ...mapState(["slide"]),
     slidesLen() {
       return this.images.length;
     },
   },
   methods: {
     prev() {
-      if (this.visibleSlide <= 0) {
-        this.visibleSlide = this.slidesLen - 1;
+      if (this.slide.visibleSlide <= 0) {
+        this.slide.visibleSlide = this.slidesLen - 1;
       } else {
-        this.visibleSlide--;
+        this.slide.visibleSlide--;
       }
-      this.direction = "right";
+      this.slide.direction = "right";
     },
     next() {
-      if (this.visibleSlide >= this.slidesLen - 1) {
-        this.visibleSlide = 0;
+      if (this.slide.visibleSlide >= this.slidesLen - 1) {
+        this.slide.visibleSlide = 0;
       } else {
-        this.visibleSlide++;
+        this.slide.visibleSlide++;
       }
-      this.direction = "left";
+      this.slide.direction = "left";
     },
     handleModal() {
       const modal = document.getElementById("modal");
