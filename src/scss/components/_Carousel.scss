@@ -4,19 +4,16 @@
     height: 100vw;
     z-index: 10;
     position: relative;
-    overflow: hidden;
     align-items: center;
 
     @include tablet {
         min-height: 35vw;
         height: 35vw;
-        border-radius: 10px;
     }
 
     @include laptop {
         min-height: 30vw;
         height: 30vw;
-        border-radius: 20px;
         cursor: pointer;
     }
 
@@ -25,15 +22,18 @@
         height: 100vw;
         display: flex;
         position: relative;
+        overflow: hidden;
 
         @include tablet {
             width: 35vw;
             height: 35vw;
+            border-radius: 10px;
         }
 
         @include laptop {
             width: 30vw;
             height: 30vw;
+            border-radius: 20px;
         }
     }
 

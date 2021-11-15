@@ -22,11 +22,11 @@
 
         &__item-container {
             cursor: pointer;
-            border: 2px solid transparent;
             max-width: 21%;
             border-radius: 10px;
             height: auto;
             overflow: hidden;
+            background-color: white;
 
             &:hover {
                 .thumbnails__item {
@@ -41,7 +41,7 @@
             transition: opacity 0.1s ease;
 
             &--selected {
-                border-color: $orange;
+                border: 2px solid $orange;
 
                 .thumbnails__item {
                     opacity: 40%;
