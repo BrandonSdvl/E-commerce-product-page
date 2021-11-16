@@ -16,11 +16,7 @@
   .details__add
     .details__quantity
       IconMinus.details__icon-minus(@click="minus()")
-      input.details__input(
-        v-model="quantity",
-        @change="handleQuantity",
-        type="number"
-      )
+      span.details__quantity-selected {{ quantity }}
       IconPlus.details__icon-plus(@click="plus()")
     button.details__button(@click="addToCart()") 
       IconCart.details__icon-cart(fill="#fff")
@@ -62,11 +58,6 @@ export default {
         return;
       } else {
         this.quantity--;
-      }
-    },
-    handleQuantity() {
-      if (this.quantity < 1) {
-        this.quantity = 1;
       }
     },
     addToCart() {
