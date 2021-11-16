@@ -1,4 +1,8 @@
 .images-container {
+    @include tablet {
+        width: 50vw;
+    }
+
     @include laptop {
         width: 30vw;
     }
@@ -26,7 +30,7 @@
             border-radius: 10px;
             height: auto;
             overflow: hidden;
-            background-color: white;
+            background-color: $white;
 
             &:hover {
                 .thumbnails__item {

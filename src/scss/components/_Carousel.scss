@@ -8,7 +8,7 @@
 
     @include tablet {
         min-height: 35vw;
-        height: 35vw;
+        height: 50vw;
     }
 
     @include laptop {
@@ -25,8 +25,8 @@
         overflow: hidden;
 
         @include tablet {
-            width: 35vw;
-            height: 35vw;
+            width: 50vw;
+            height: 50vw;
             border-radius: 10px;
         }
 
@@ -47,8 +47,8 @@
         bottom: 0;
 
         @include tablet {
-            width: 35vw;
-            height: 35vw;
+            width: 50vw;
+            height: 50vw;
         }
 
         @include laptop {

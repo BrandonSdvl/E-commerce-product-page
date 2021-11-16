@@ -4,7 +4,7 @@
     @click="prev()",
     :class="modal ? 'modal__btn' : 'carousel__btn'"
   )
-    PreviousIcon
+    IconPrevious
   .carousel__list
     transition(
       :name="slide.direction",
@@ -22,12 +22,12 @@
     @click="next()",
     :class="modal ? 'modal__btn' : 'carousel__btn'"
   )
-    NextIcon
+    IconNext
 </template>
 
 <script>
-import NextIcon from "../assets/icon-next.svg?inline";
-import PreviousIcon from "../assets/icon-previous.svg?inline";
+import IconNext from "../assets/icon-next.svg?inline";
+import IconPrevious from "../assets/icon-previous.svg?inline";
 import { mapState } from "vuex";
 
 export default {
@@ -37,8 +37,8 @@ export default {
     modal: Boolean,
   },
   components: {
-    NextIcon,
-    PreviousIcon,
+    IconNext,
+    IconPrevious,
   },
   computed: {
     ...mapState(["slide"]),
