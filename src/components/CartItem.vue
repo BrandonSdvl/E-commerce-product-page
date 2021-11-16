@@ -32,6 +32,7 @@ export default {
   methods: {
     deleteItem() {
       this.cart.splice(this.idx, 1);
+      localStorage.setItem("cart", JSON.stringify(this.cart));
     },
   },
 };

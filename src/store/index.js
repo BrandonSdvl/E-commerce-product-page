@@ -43,7 +43,11 @@ export default new Vuex.Store({
       direction: "left",
     },
   },
-  mutations: {},
+  mutations: {
+    setCart(state, val) {
+      state.cart = val;
+    },
+  },
   actions: {},
   modules: {},
 });

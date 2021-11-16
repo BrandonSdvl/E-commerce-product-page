@@ -31,7 +31,7 @@
 import IconMinus from "../assets/icon-minus.svg?inline";
 import IconPlus from "../assets/icon-plus.svg?inline";
 import IconCart from "../assets/icon-cart.svg?inline";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "Details",
@@ -53,6 +53,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["setCart"]),
     plus() {
       this.quantity++;
     },
@@ -78,6 +79,8 @@ export default {
       });
       if (created) {
         this.quantity = 1;
+        this.saveCart();
+        alert("Product added to cart");
         return;
       } else {
         let element = {
@@ -86,8 +89,20 @@ export default {
         };
         this.cart.push(element);
         this.quantity = 1;
+        this.saveCart();
+        alert("Product added to cart");
       }
     },
+    saveCart() {
+      localStorage.setItem("cart", JSON.stringify(this.cart));
+    },
+  },
+  mounted() {
+    if (localStorage.getItem("cart")) {
+      this.setCart(JSON.parse(localStorage.getItem("cart")));
+    } else {
+      this.saveCart();
+    }
   },
 };
 </script>

@@ -4,6 +4,7 @@
   Product(:selected="selected")
   Modal
     Images(:images="products[selected].images", :modal="true")
+  Footer
 </template>
 
 <script>
@@ -11,6 +12,7 @@ import Header from "./components/Header.vue";
 import Product from "./components/Product.vue";
 import Modal from "./components/Modal.vue";
 import Images from "./components/Images.vue";
+import Footer from "./components/Footer.vue";
 import { mapState } from "vuex";
 
 export default {
@@ -20,6 +22,7 @@ export default {
     Product,
     Modal,
     Images,
+    Footer,
   },
   computed: {
     ...mapState(["products"]),
