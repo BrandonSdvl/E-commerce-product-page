@@ -16,7 +16,8 @@
       img.carousel__item(
         :src="require('../assets/' + i)",
         v-show="idx===slide.visibleSlide",
-        @click="!modal ? handleModal() : ''"
+        @click="!modal ? handleModal() : ''",
+        alt="Product image"
       )
   .carousel__btn.carousel__btn--next(
     @click="next()",

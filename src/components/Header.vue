@@ -1,10 +1,7 @@
 <template lang="pug">
 header.header
   .header__container
-    IconHamburger.hamburger(
-      @click="$parent.show($refs.nav, 'nav')",
-      alt="menu"
-    )
+    IconHamburger.hamburger(@click="$parent.show($refs.nav, 'nav')")
     Logo.header__logo
     nav.nav(ref="nav")
       .nav__container

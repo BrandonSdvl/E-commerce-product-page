@@ -7,7 +7,11 @@
       @click="changeImage(idx)",
       :class="idx === slide.visibleSlide ? 'thumbnails__item--selected' : ''"
     )
-      img.thumbnails__item(:src="require(`../assets/${i}`)", :key="idx")
+      img.thumbnails__item(
+        :src="require(`../assets/${i}`)",
+        :key="idx",
+        alt="Preview product image"
+      )
 </template>
 
 <script>

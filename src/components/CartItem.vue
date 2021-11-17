@@ -1,7 +1,8 @@
 <template lang="pug">
 .cart-item
   img.cart-item__image(
-    :src="require('../assets/' + products[product].images.thumbnails[0])"
+    :src="require('../assets/' + products[product].images.thumbnails[0])",
+    alt="Cart item image"
   )
   .cart-item__details
     span {{ products[product].data.postTitle }}
