@@ -52,13 +52,13 @@
             gap: 30px;
 
             &:nth-child(2) {
-                padding: 30px;
+                padding: 32px 0 32px;
             }
         }
     }
 
     &__user-image {
-        width: 20px;
+        width: 25px;
         border: 1px solid transparent;
         transition: border .1s ease-in;
         border-radius: 50%;
@@ -68,11 +68,11 @@
         }
 
         @include tablet {
-            width: 30px;
+            width: 35px;
         }
 
         @include laptop {
-            width: 40px;
+            width: 50px;
             cursor: pointer;
             border: 2px solid transparent;
 
@@ -98,7 +98,7 @@
     }
 
     @include laptop {
-        padding: 0 40px;
+        padding: 0;
         margin: 0 10vw;
         width: 80vw;
     }

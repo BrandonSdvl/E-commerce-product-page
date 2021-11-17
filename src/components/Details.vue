@@ -1,6 +1,6 @@
 <template lang="pug">
 .details
-  h2.details__company {{ details.company }}
+  p.details__company {{ details.company }}
   h1.details__title {{ details.postTitle }}
   p.details__description {{ details.description }}
 
