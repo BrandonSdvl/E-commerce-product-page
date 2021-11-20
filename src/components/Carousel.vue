@@ -5,20 +5,22 @@
     :class="modal ? 'modal__btn' : 'carousel__btn'"
   )
     IconPrevious
-  .carousel__list
-    transition(
-      :name="slide.direction",
-      mode="in-out",
-      v-for="(i, idx) in images",
-      :key="idx",
-      tag="div"
+  .carousel__list-container
+    .carousel__list(
+      ref="carouselList",
+      @drop="dragEnd",
+      @dragenter.prevent,
+      @dragover.prevent
     )
-      img.carousel__item(
-        :src="require('../assets/' + i)",
-        v-show="idx===slide.visibleSlide",
-        @click="!modal ? handleModal() : ''",
-        alt="Product image"
-      )
+      div(v-for="(i, idx) in images", :key="idx")
+        img.carousel__item(
+          :src="require('../assets/' + i)",
+          @click="!modal ? handleModal() : ''",
+          alt="Product image",
+          draggable="true",
+          @dragstart="startDrag($event, idx)",
+          @dragend="endDrag($event)"
+        )
   .carousel__btn.carousel__btn--next(
     @click="next()",
     :class="modal ? 'modal__btn' : 'carousel__btn'"
@@ -37,6 +39,13 @@ export default {
     images: Array,
     modal: Boolean,
   },
+  data() {
+    return {
+      xInitial: 0,
+      itemWidth: 0,
+      img: new Image(),
+    };
+  },
   components: {
     IconNext,
     IconPrevious,
@@ -48,13 +57,32 @@ export default {
     },
   },
   methods: {
+    dragEnd(e) {
+      e.preventDefault();
+    },
+    startDrag(e, id) {
+      e.dataTransfer.dropEffect = "move";
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("itemID", id);
+      e.dataTransfer.setDragImage(this.img, 1, 1);
+      this.xInitial = e.x;
+    },
+    endDrag(e) {
+      if (Math.abs(e.x - this.xInitial) >= 50) {
+        if (e.x - this.xInitial > 0) {
+          this.prev();
+        } else if (e.x - this.xInitial < 0) {
+          this.next();
+        }
+      }
+    },
     prev() {
       if (this.slide.visibleSlide <= 0) {
         this.slide.visibleSlide = this.slidesLen - 1;
       } else {
         this.slide.visibleSlide--;
       }
-      this.slide.direction = "right";
+      this.adjustCarousel();
     },
     next() {
       if (this.slide.visibleSlide >= this.slidesLen - 1) {
@@ -62,7 +90,15 @@ export default {
       } else {
         this.slide.visibleSlide++;
       }
-      this.slide.direction = "left";
+      this.adjustCarousel();
+    },
+    changeImage(idx) {
+      if (this.slide.visibleSlide === idx) {
+        return;
+      } else {
+        this.slide.visibleSlide = idx;
+        this.adjustCarousel();
+      }
     },
     handleModal() {
       const modal = document.getElementById("modal");
@@ -72,6 +108,25 @@ export default {
         modal.classList.remove("modal--show");
       }
     },
+    handleResize() {
+      this.itemWidth = this.$refs.carouselList.firstElementChild.clientWidth;
+      this.adjustCarousel();
+    },
+    adjustCarousel() {
+      this.$refs.carouselList.style.transform = `translateX(-${
+        this.itemWidth * this.slide.visibleSlide
+      }px)`;
+    },
+  },
+  created() {
+    window.addEventListener("resize", this.handleResize);
+  },
+  mounted() {
+    this.itemWidth = this.$refs.carouselList.firstElementChild.clientWidth;
+    this.img.src = require("../assets/transparent.png");
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
   },
 };
 </script>

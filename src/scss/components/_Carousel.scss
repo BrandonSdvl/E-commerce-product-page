@@ -9,47 +9,63 @@
     @include tablet {
         min-height: 35vw;
         height: 50vw;
+        border-radius: 10px;
     }
 
     @include laptop {
         min-height: 30vw;
         height: 30vw;
         cursor: pointer;
+        border-radius: 20px;
+    }
+
+    &__list-container {
+        overflow: hidden;
+
+        @include tablet {
+            border-radius: 10px;
+        }
+
+        @include laptop {
+            border-radius: 20px;
+        }
     }
 
     &__list {
         width: 100vw;
         height: 100vw;
         display: flex;
-        position: relative;
-        overflow: hidden;
+        transition: transform 0.5s ease;
 
         @include tablet {
             width: 50vw;
             height: 50vw;
-            border-radius: 10px;
         }
 
         @include laptop {
             width: 30vw;
             height: 30vw;
-            border-radius: 20px;
         }
     }
 
     &__item {
         width: 100vw;
         height: auto;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
 
         @include tablet {
             width: 50vw;
             height: 50vw;
         }
+
+        @include laptop {
+            width: 30vw;
+            height: 30vw;
+        }
+    }
+
+    &__item-div {
+        background-repeat: no-repeat;
+        background-size: cover;
 
         @include laptop {
             width: 30vw;
