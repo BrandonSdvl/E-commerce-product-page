@@ -8,7 +8,7 @@
   .carousel__list-container
     .carousel__list(
       ref="carouselList",
-      @drop="dragEnd",
+      @drop="drop",
       @dragenter.prevent,
       @dragover.prevent
     )
@@ -19,7 +19,9 @@
           alt="Product image",
           draggable="true",
           @dragstart="startDrag($event, idx)",
-          @dragend="endDrag($event)"
+          @dragend="endDrag($event)",
+          @touchstart="startTouch($event)",
+          @touchend="endTouch($event)"
         )
   .carousel__btn.carousel__btn--next(
     @click="next()",
@@ -57,8 +59,20 @@ export default {
     },
   },
   methods: {
-    dragEnd(e) {
+    drop(e) {
       e.preventDefault();
+    },
+    startTouch(e) {
+      this.xInitial = e.changedTouches[0].clientX;
+    },
+    endTouch(e) {
+      if (Math.abs(e.changedTouches[0].clientX - this.xInitial) >= 50) {
+        if (e.changedTouches[0].clientX - this.xInitial > 0) {
+          this.prev();
+        } else if (e.changedTouches[0].clientX - this.xInitial < 0) {
+          this.next();
+        }
+      }
     },
     startDrag(e, id) {
       e.dataTransfer.dropEffect = "move";
