@@ -1,29 +1,21 @@
-<template lang="pug">
-main.product
-  Images(:images="products[selected].images", :modal="false")
-  Details(:details="products[selected].data", :selected="selected")
-</template>
-
-<script>
+<script setup>
 import Images from "./Images.vue";
 import Details from "./Details.vue";
-import { mapState } from "vuex";
+import { useStore } from '@/store/index';
 
-export default {
-  name: "Product",
-  components: {
-    Images,
-    Details,
-  },
-  props: {
-    selected: {
-      type: Number,
-      default: 0,
-    },
-  },
-  computed: {
-    ...mapState(["products"]),
-  },
-  created() {},
-};
+const store = useStore();
+
+const props = defineProps({
+  selected: {
+    type: Number,
+    default: 0,
+  }
+})
+
 </script>
+
+<template lang="pug">
+main.product
+  Images(:images="store.products[selected].images", :modal="false")
+  Details(:details="store.products[selected].data", :selected="selected")
+</template>

@@ -8,9 +8,3 @@ footer.attribution
   | Coded by &nbsp;
   a.attribution__link(href="http://github.com/brandonsdvl", target="_blank") BrandonSdvl
 </template>
-
-<script>
-export default {
-  name: "Footer",
-};
-</script>

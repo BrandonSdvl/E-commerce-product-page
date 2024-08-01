@@ -1,11 +1,26 @@
+<script setup>
+import CartItem from "./CartItem.vue";
+import { useStore } from '@/store/index';
+import { ref } from 'vue'
+
+const store = useStore();
+
+const root = ref(null);
+
+defineExpose({
+  root
+});
+
+</script>
+
 <template lang="pug">
-.cart
+.cart(ref="root")
   h2.cart__title Cart
-  template(v-if="cart.length == 0")
+  template(v-if="store.cart.length == 0")
     .cart__message Your cart is empty
   .cart__items(v-else)
     CartItem(
-      v-for="(i, idx) in cart",
+      v-for="(i, idx) in store.cart",
       :amount="i.quantity",
       :product="i.product",
       :key="idx",
@@ -13,18 +28,3 @@
     )
     button.cart__button Checkout
 </template>
-
-<script>
-import CartItem from "./CartItem.vue";
-import { mapState } from "vuex";
-
-export default {
-  name: "Cart",
-  components: {
-    CartItem,
-  },
-  computed: {
-    ...mapState(["cart", "products"]),
-  },
-};
-</script>

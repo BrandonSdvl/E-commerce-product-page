@@ -1,23 +1,19 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import {
+  defineStore
+} from 'pinia';
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
-  state: {
-    cart: [
-      {
+export const useStore = defineStore('main', {
+  state: () => {
+    return {
+      cart: [{
         product: 0,
         quantity: 3,
-      },
-    ],
-    products: [
-      {
+      }, ],
+      products: [{
         data: {
           company: "Sneaker Company",
           postTitle: "Fall Limited Edition Sneakers",
-          description:
-            "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.",
+          description: "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.",
           price: 250,
           discount: 50,
           netPrice: 125,
@@ -36,18 +32,17 @@ export default new Vuex.Store({
             "image-product-4-thumbnail.jpg",
           ],
         },
+      }, ],
+      slide: {
+        visibleSlide: 0,
+        direction: "left",
       },
-    ],
-    slide: {
-      visibleSlide: 0,
-      direction: "left",
+    }
+  },
+
+  actions: {
+    setCart(val) {
+      this.cart = val;
     },
   },
-  mutations: {
-    setCart(state, val) {
-      state.cart = val;
-    },
-  },
-  actions: {},
-  modules: {},
 });
