@@ -24,12 +24,19 @@ const deleteItem = () => {
   localStorage.setItem("cart", JSON.stringify(store.cart));
 }
 
+const imgImport = import.meta.glob('/src/assets/*.jpg', { eager: true });
+
+const getImageUrl = (imageName) => {
+  const image = imgImport[`/src/assets/${imageName}`];
+  return image ? image.default : '';
+};
+
 </script>
 
 <template lang="pug">
 .cart-item
   img.cart-item__image(
-    :src="`/src/assets/${store.products[product].images.thumbnails[0]}`",
+    :src="getImageUrl(store.products[product].images.thumbnails[0])",
     alt="Cart item image"
   )
   .cart-item__details

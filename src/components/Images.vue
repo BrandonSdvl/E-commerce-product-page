@@ -12,6 +12,14 @@ const props = defineProps({
   modal: Boolean,
 })
 
+const imgImport = import.meta.glob('/src/assets/*.jpg', { eager: true });
+
+// Función para obtener la URL de la imagen
+const getImageUrl = (imageName) => {
+  const image = imgImport[`/src/assets/${imageName}`];
+  return image ? image.default : '';
+};
+
 </script>
 
 <template lang="pug">
@@ -24,7 +32,7 @@ const props = defineProps({
       :class="idx === store.slide.visibleSlide ? 'thumbnails__item--selected' : ''"
     )
       img.thumbnails__item(
-        :src="`/src/assets/${i}`",
+        :src="getImageUrl(i)",
         :key="idx",
         alt="Preview product image"
       )

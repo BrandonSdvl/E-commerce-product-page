@@ -112,6 +112,14 @@ const adjustCarousel = () => {
     }px)`;
 }
 
+const imgImport = import.meta.glob('/src/assets/*.jpg', { eager: true });
+
+const getImageUrl = (imageName) => {
+  const image = imgImport[`/src/assets/${imageName}`];
+  return image ? image.default : '';
+};
+
+
 defineExpose({
   changeImage
 })
@@ -134,7 +142,7 @@ defineExpose({
     )
       div(v-for="(i, idx) in props.images", :key="idx")
         img.carousel__item(
-          :src="`/src/assets/${i}`",
+          :src="getImageUrl(i)",
           @click="!props.modal ? handleModal() : ''",
           alt="Product image",
           draggable="true",
