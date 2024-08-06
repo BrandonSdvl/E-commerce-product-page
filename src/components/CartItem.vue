@@ -1,49 +1,37 @@
 <script setup>
 import DeleteIcon from "@/assets/icon-delete.svg?component";
-import { useStore } from '@/store/index';
+import { useCartStore, useProductsStore } from '@/store';
+import { getImageUrl } from '@/utils/imageUtils';
 
-const store = useStore();
+const cartStore = useCartStore();
+const productsStore = useProductsStore();
 
 const props = defineProps({
   amount: {
     type: Number,
     default: 0,
   },
-  product: {
-    type: Number,
-    default: 0,
-  },
-  idx: {
+  productId: {
     type: Number,
     default: 0,
   },
 })
 
-const deleteItem = () => {
-  store.cart.splice(props.idx, 1);
-  localStorage.setItem("cart", JSON.stringify(store.cart));
-}
-
-const imgImport = import.meta.glob('/src/assets/*.jpg', { eager: true });
-
-const getImageUrl = (imageName) => {
-  const image = imgImport[`/src/assets/${imageName}`];
-  return image ? image.default : '';
-};
+const currItem = productsStore.products[props.productId]
 
 </script>
 
 <template lang="pug">
 .cart-item
   img.cart-item__image(
-    :src="getImageUrl(store.products[product].images.thumbnails[0])",
+    :src="getImageUrl(currItem.images.thumbnails[0])",
     alt="Cart item image"
   )
   .cart-item__details
-    span {{ store.products[product].data.postTitle }}
+    span {{ currItem.data.postTitle }}
     .cart-item__price
-      span ${{ store.products[product].data.netPrice }}
+      span ${{ productsStore.getNetPrice(productId) }}
       span &nbsp;x {{ amount }}&nbsp;
-      span.cart-item__total ${{ store.products[product].data.netPrice * amount }}
-  DeleteIcon(@click="deleteItem()")
+      span.cart-item__total ${{ productsStore.getNetPrice(productId) * amount }}
+  DeleteIcon(@click="cartStore.deleteItem(productId)")
 </template>

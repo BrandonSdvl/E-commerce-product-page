@@ -2,9 +2,9 @@
 import IconNext from "../assets/icon-next.svg?component";
 import IconPrevious from "../assets/icon-previous.svg?component";
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import { useStore } from '@/store/index';
+import { useSlideStore } from '@/store';
 
-const store = useStore();
+const slideStore = useSlideStore();
 
 const xInitial = ref(0)
 const itemWidth = ref(0)
@@ -67,39 +67,35 @@ const endDrag = (e) => {
 }
 
 const prev = () => {
-  if (store.slide.visibleSlide <= 0) {
-    store.slide.visibleSlide = slidesLen.value - 1;
+  if (slideStore.visibleSlide <= 0) {
+    slideStore.visibleSlide = slidesLen.value - 1;
   } else {
-    store.slide.visibleSlide--;
+    slideStore.visibleSlide--;
   }
   adjustCarousel();
 }
 
 const next = () => {
-  if (store.slide.visibleSlide >= slidesLen.value - 1) {
-    store.slide.visibleSlide = 0;
+  if (slideStore.visibleSlide >= slidesLen.value - 1) {
+    slideStore.visibleSlide = 0;
   } else {
-    store.slide.visibleSlide++;
+    slideStore.visibleSlide++;
   }
   adjustCarousel();
 }
 
 const changeImage = (idx) => {
-  if (store.slide.visibleSlide === idx) {
+  if (slideStore.visibleSlide === idx) {
     return;
   } else {
-    store.slide.visibleSlide = idx;
+    slideStore.visibleSlide = idx;
     adjustCarousel();
   }
 }
 
 const handleModal = () => {
   const modal = document.getElementById("modal");
-  if (!modal.classList.contains("modal--show")) {
-    modal.classList.add("modal--show");
-  } else {
-    modal.classList.remove("modal--show");
-  }
+  modal.classList.toggle('modal--show')
 }
 
 const handleResize = () => {
@@ -108,7 +104,7 @@ const handleResize = () => {
 }
 
 const adjustCarousel = () => {
-  carouselList.value.style.transform = `translateX(-${itemWidth.value * store.slide.visibleSlide
+  carouselList.value.style.transform = `translateX(-${itemWidth.value * slideStore.visibleSlide
     }px)`;
 }
 

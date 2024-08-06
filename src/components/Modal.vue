@@ -1,17 +1,15 @@
 <script setup>
 import IconClose from "../assets/icon-close.svg?component";
-import { ref, defineEmits } from 'vue'
+import { ref } from 'vue'
 
 const modal = ref(null)
-
-const emit = defineEmits(['closeModal']);
 
 </script>
 
 <template lang="pug">
-#modal.modal(ref="modal")
+#modal.modal(ref="modal", @click.self="modal.classList.toggle('modal--show')")
   .modal__content
-    IconClose.modal__icon-close(@click="emit('closeModal', modal, 'modal')")
+    IconClose.modal__icon-close(@click="modal.classList.toggle('modal--show')")
     slot
 </template>
 

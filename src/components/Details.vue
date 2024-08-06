@@ -2,25 +2,19 @@
 import IconMinus from "../assets/icon-minus.svg?component";
 import IconPlus from "../assets/icon-plus.svg?component";
 import IconCart from "../assets/icon-cart.svg?component";
-import { useStore } from '@/store/index';
-import { ref, onMounted } from 'vue'
+import { useCartStore, useProductsStore } from '@/store';
+import { ref } from 'vue'
 
-const store = useStore();
+const cartStore = useCartStore();
+const productsStore = useProductsStore()
 
 const quantity = ref(1)
 
-onMounted(() => {
-  if (localStorage.getItem("cart")) {
-    store.setCart(JSON.parse(localStorage.getItem("cart")));
-  } else {
-    saveCart();
-  }
-})
-
 const props = defineProps({
-  details: Object,
   selected: Number,
 })
+
+const details = productsStore.products[props.selected].data
 
 const plus = () => {
   quantity.value++;
@@ -35,32 +29,8 @@ const minus = () => {
 }
 
 const addToCart = () => {
-  let created = false;
-  store.cart.map((item) => {
-    if (item.product === props.selected) {
-      created = true;
-      item.quantity += quantity.value;
-    }
-  });
-  if (created) {
-    quantity.value = 1;
-    saveCart();
-    alert("Product added to cart");
-    return;
-  } else {
-    let element = {
-      product: props.selected,
-      quantity: quantity.value,
-    };
-    store.cart.push(element);
-    quantity.value = 1;
-    saveCart();
-    alert("Product added to cart");
-  }
-}
-
-const saveCart = () => {
-  localStorage.setItem("cart", JSON.stringify(store.cart));
+  cartStore.addItem(props.selected, quantity.value);
+  quantity.value = 1;
 }
 
 </script>
@@ -74,7 +44,7 @@ const saveCart = () => {
   .details__price-container
     template(v-if="details.discount")
       div
-        span.details__net-price ${{ details.netPrice.toFixed(2) }}
+        span.details__net-price ${{ productsStore.getNetPrice(selected).toFixed(2) }}
         span.details__discount {{ details.discount + '%' }}
       span.details__price ${{ details.price.toFixed(2) }}
     template(v-else)

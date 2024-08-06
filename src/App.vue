@@ -1,32 +1,25 @@
 <script setup>
 import Header from "@/components/Header.vue";
-import Product from "@/components/Product.vue";
 import Modal from "@/components/Modal.vue";
 import Images from "@/components/Images.vue";
+import Details from "@/components/Details.vue";
 import Footer from "@/components/Footer.vue";
-import { useStore } from '@/store/index';
 import { ref } from 'vue'
+import { useProductsStore } from '@/store';
 
+const productsStore = useProductsStore();
 const selected = ref(0);
-
-const store = useStore();
-
-const show = (el, name) => {
-  if (!el.classList.contains(`${name}--show`)) {
-    el.classList.add(`${name}--show`);
-  } else {
-    el.classList.remove(`${name}--show`);
-  }
-}
 
 </script>
 
 <template lang="pug">
 #app
-  Header(@show="show")
-  Product(:selected="selected")
-  Modal(@closeModal="show")
-    Images(:images="store.products[selected].images", :modal="true")
+  Header
+  main.product
+    Images(:images="productsStore.getProductById(selected).images", :modal="false")
+    Details(:selected="selected")
+  Modal
+    Images(:images="productsStore.getProductById(selected).images", :modal="true")
   Footer
 </template>
 
