@@ -16,14 +16,14 @@ defineExpose({
 <template lang="pug">
 .cart(ref="root")
   h2.cart__title Cart
-  template(v-if="cartStore.getTotalCartItems == 0")
-    .cart__message Your cart is empty
-  .cart__items(v-else)
-    CartItem(
-      v-for="(i, idx) in cartStore.cart",
-      :amount="i.quantity",
-      :productId="i.productId",
-      :key="i.productId",
-    )
-  button.cart__button Checkout
+  .cart__message(v-if="cartStore.getTotalCartItems == 0") Your cart is empty
+  template(v-else)
+    .cart__items
+      CartItem(
+        v-for="(i, idx) in cartStore.cart",
+        :amount="i.quantity",
+        :productId="i.productId",
+        :key="i.productId",
+      )
+    button.cart__button Checkout
 </template>
