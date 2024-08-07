@@ -86,8 +86,10 @@ const handleModal = () => {
 };
 
 const handleResize = () => {
-  itemWidth.value = carouselList.value.clientWidth;
-  adjustCarousel();
+  if(carouselList.value.clientWidth != itemWidth.value && carouselList.value.clientWidth != 0) {
+    itemWidth.value = carouselList.value.clientWidth;
+    adjustCarousel();
+  }
 };
 
 const adjustCarousel = () => {
