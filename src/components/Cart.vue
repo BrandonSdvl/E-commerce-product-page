@@ -25,5 +25,5 @@ defineExpose({
       :productId="i.productId",
       :key="i.productId",
     )
-    button.cart__button Checkout
+  button.cart__button Checkout
 </template>
